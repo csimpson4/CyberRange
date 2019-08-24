@@ -63,24 +63,6 @@ resource "aws_instance" "win7" {
   }
 }
 
-resource "aws_instance" "win8" {
-  count = "${var.docker_ct}"
-  ami           = "${data.aws_ami.win8.id}"
-  instance_type = "${var.instance_type}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
-  root_block_device {
-    delete_on_termination = true
-  }
-  tags = {
-    Name        = "CyberRange-win8-${count.index}"
-    Environment = "${var.environment}"
-    Terraform   = "True"
-  }
-}
-
-
 resource "aws_instance" "ami_ms3_2k12" {
   count = "${var.docker_ct}"
   ami           = "${data.aws_ami.ms3_2k12.id}"
@@ -99,38 +81,4 @@ resource "aws_instance" "ami_ms3_2k12" {
   }
 }
 
-resource "aws_instance" "win2012_RTM" {
-  count = "${var.docker_ct}"
-  ami           = "${data.aws_ami.win2k12_RTM.id}"
-  instance_type = "${var.instance_type}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
-  root_block_device {
-    delete_on_termination = true
-  }
-  tags = {
-    Name        = "CyberRange-win2012_RTM-${count.index}"
-    Environment = "${var.environment}"
-    Terraform   = "True"
-  }
-}
-
-resource "aws_instance" "win2016" {
-  count = "${var.docker_ct}"
-  ami = "${data.aws_ami.win2k16.id}"
-  instance_type = "${var.instance_type_win}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${var.win_bootstrap_user_data}"
-  root_block_device {
-    delete_on_termination = true
-  }
-  tags = {
-    Name        = "CyberRange-win2016-${count.index}"
-    Environment = "${var.environment}"
-    Terraform   = "True"
-  }
-}
 
