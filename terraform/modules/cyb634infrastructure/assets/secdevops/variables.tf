@@ -1,6 +1,6 @@
 variable "ip_list" {
   description = "Lock this environment down to your IP"
-    default     = "71.115.195.211/32"
+    default     = "172.251.211.216/32"
 }
 
 variable "environment" {
@@ -37,17 +37,6 @@ variable "private-a-subnet-id" {
 
 variable "private-b-subnet-id" {
   description = "private subnet b"
-}
-
-
-variable "tpot_ct" {
-  description = "# of tpot assets to create"
-  default     = 1
-}
-
-variable "fbctf_ct" {
-  description = "# of FBCTF assets to create"
-  default     = 1
 }
 
 variable "kali_ct" {

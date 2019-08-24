@@ -15,14 +15,6 @@ output "attacker_subnet_id" {
   value = "${aws_subnet.attacker_subnet.id}"
 }
 
-output "honeypot_subnet_id" {
-  value = "${aws_subnet.honeypot_subnet.id}"
-}
-
-output "malware_subnet_id" {
-  value = "${aws_subnet.malware_subnet.id}"
-}
-
 output "private-a-subnet-id" {
   value = "${aws_subnet.private-a.id}"
 }
